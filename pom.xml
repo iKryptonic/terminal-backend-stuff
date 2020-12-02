@@ -56,7 +56,6 @@
 	    <artifactId>mysql-connector-java</artifactId>
 	    <version>5.1.48</version>
 	</dependency>
-	<!-- https://mvnrepository.com/artifact/org.json/json -->
 	<dependency>
 	    <groupId>org.json</groupId>
 	    <artifactId>json</artifactId>
@@ -71,12 +70,6 @@
 	    <groupId>org.slf4j</groupId>
 	    <artifactId>slf4j-simple</artifactId>
 	    <version>1.7.28</version>
-	    <scope>test</scope>
-	</dependency>
-	<dependency>
-	    <groupId>org.slf4j</groupId>
-	    <artifactId>slf4j-api</artifactId>
-	    <version>1.7.9</version>
 	</dependency>
 	<dependency>
 	    <groupId>net.dv8tion</groupId>
