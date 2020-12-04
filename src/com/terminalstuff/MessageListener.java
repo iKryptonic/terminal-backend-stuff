@@ -8,23 +8,34 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 import java.util.Map.Entry;
+import java.util.concurrent.CompletableFuture;
+import java.util.concurrent.TimeUnit;
+import java.util.function.Consumer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import io.netty.util.concurrent.CompleteFuture;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
+import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.Guild;
+import net.dv8tion.jda.api.entities.Invite;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.SelfUser;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.ErrorResponseException;
+import net.dv8tion.jda.api.exceptions.InsufficientPermissionException;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.managers.AccountManager;
+import net.dv8tion.jda.api.requests.restaction.InviteAction;
 
 public class MessageListener extends ListenerAdapter
 {
@@ -114,6 +125,22 @@ public class MessageListener extends ListenerAdapter
 					            event.getAuthor().openPrivateChannel().complete().sendMessage("I set my name to "+cMsg[1]).queue();
 							    channel.deleteMessageById(event.getMessageId()).complete();
 					        // end !setname
+					        } else if ((cMsg[0].equals("getguilds")) && modLevel > 4){
+					        	EmbedBuilder embed = new EmbedBuilder();
+								embed.setAuthor(me.getName(), me.getAvatarUrl());
+								
+					        	me.getJDA().getGuilds()
+					        	.stream()
+					        	.forEach(g -> 
+					            {
+					            	embed.addField(g.getName(),
+					            					g.getId(),
+					            							 true);
+					            });
+								embed.setFooter("Made by alucard#8668 (148931616452902912)", null);
+								embed.setColor(new Color(0x4286F4));
+								channel.sendMessage(embed.build()).queue();
+					        // end !getguilds
 					        } else if ((cMsg[0].equals("setnick")) && modLevel > 4){
 					        	event.getGuild().getMemberById(me.getId()).modifyNickname(cMsg[1]).queue();
 					            event.getAuthor().openPrivateChannel().complete().sendMessage("I set my nick to "+cMsg[1]).queue();

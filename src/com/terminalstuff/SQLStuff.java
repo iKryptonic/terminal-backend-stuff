@@ -66,7 +66,7 @@ public class SQLStuff {
 	                   ";create=true",
 	                   connectionProps);
 	    }
-	    System.out.println("Connected to terminal logging database");
+	    System.out.println(MainClass.CColor.GREEN_BOLD + "Connected to terminal logging database" + MainClass.CColor.RESET);
 	    return conn;
 	}
 	
@@ -78,7 +78,7 @@ public class SQLStuff {
 	    } catch (SQLException e ) {
 	        System.out.println(e);
 	    } finally {
-	        if (query != null) {System.out.println("Got no query sent!"); query.close(); }
+	        if (query != null) { query.close(); }
 	    }
 	}
 	

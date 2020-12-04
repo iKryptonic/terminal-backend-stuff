@@ -15,7 +15,7 @@ public class CommandProcessor {
 	            case "database":
 	                switch (cmd[1]) {
 	                    case "new":
-	                        System.out.println("creating db: " + cmd[2]);
+	                        System.out.println(MainClass.CColor.WHITE_BRIGHT+"creating db: " + cmd[2]+MainClass.CColor.RESET);
 	                        break;
 	
 	                    default:
@@ -28,7 +28,7 @@ public class CommandProcessor {
 	            	break;
 
 	            case "shutdownallservers":
-	            	System.out.println("its done boss.");
+	            	System.out.println(MainClass.CColor.WHITE_BRIGHT+"its done boss."+MainClass.CColor.RESET);
 	            	break;
 	
 	            default:
