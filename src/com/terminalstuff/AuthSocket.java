@@ -194,7 +194,7 @@ public class AuthSocket extends WebSocketServer {
 
 	@Override
 	public void onStart() {
-		System.out.println("Terminal client websocket started!");
+		System.out.println(MainClass.CColor.GREEN_BOLD+"Terminal client websocket started!"+MainClass.CColor.RESET);
 		setConnectionLostTimeout(0);
 		setConnectionLostTimeout(100);
 	}
