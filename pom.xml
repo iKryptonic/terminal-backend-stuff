@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>TerminalBackend</groupId>
   <artifactId>TerminalBackend</artifactId>
-  <version>0.1.1-SNAPSHOT</version>
+  <version>1.0.1</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>     
@@ -37,6 +37,7 @@
         </configuration>
       </plugin>
     </plugins>
+	<finalName>TerminalBackend</finalName>
   </build>
   <repositories>
 	<repository>
