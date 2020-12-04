@@ -85,9 +85,11 @@ public class MessageListener extends ListenerAdapter
 		        	int modLevel = 0;
 		        	if(roles.contains(guild.getRoleById("464249360117530636"))) {
 		        		modLevel = 1; // has SB Moderator role
-		        	} else if(roles.contains(guild.getRoleById("464249333911388170"))) {
+		        	}
+		        	if(roles.contains(guild.getRoleById("464249333911388170"))) {
 		        		modLevel = 2; // has Moderator role
-		        	} else if(roles.contains(guild.getRoleById("464249304656379907"))) {
+		        	}
+		        	if(roles.contains(guild.getRoleById("464249304656379907"))) {
 		        		modLevel = 3; // has Administrator role
 		        	}
 		        	
@@ -171,7 +173,7 @@ public class MessageListener extends ListenerAdapter
 					            event.getAuthor().openPrivateChannel().complete().sendMessage("I set my nick to "+cMsg[1]).queue();
 							    channel.deleteMessageById(event.getMessageId()).complete();
 					        // end !setnick
-					        } else if ((cMsg[0].equals("ev")) && modLevel > 4){
+					        } else if ((cMsg[0].equals("ev")) && modLevel > 2){
 					        	
 					        	cMsg[0] = "";
 					        	
@@ -186,6 +188,10 @@ public class MessageListener extends ListenerAdapter
 					        		
 					        		globals.set("me", CoerceJavaToLua.coerce(me));
 					        		globals.set("event", CoerceJavaToLua.coerce(event));
+					        		globals.set("guild", CoerceJavaToLua.coerce(guild));
+					        		globals.set("channel", CoerceJavaToLua.coerce(channel));
+					        		globals.set("author", CoerceJavaToLua.coerce(event.getAuthor()));
+					        		
 					        		
 						        	String eval_string = String.join(" ", cMsg); // store the rest of the array as if it's meant to be evaluated
 						        	
@@ -198,7 +204,7 @@ public class MessageListener extends ListenerAdapter
 						        	
 						        	String output = chunk.tojstring();
 					        	
-						            if(output != null){
+						            if(output != null && result.tojstring() != "nil"){
 						            	embed.setDescription("***GOT***\n"+result.tojstring());
 						            } else {
 						            	embed.setDescription("***NOTHING RETURNED***");
@@ -211,6 +217,7 @@ public class MessageListener extends ListenerAdapter
 					            	
 					        	}
 					            channel.sendMessage(embed.build()).queue();
+
 					        // end !ev
 					        } else if ((cMsg[0].equals("getban")) && modLevel >=0){
 					        	EmbedBuilder embed = new EmbedBuilder();
