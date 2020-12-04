@@ -24,7 +24,7 @@ public class Server {
 	Map<Integer, Outputz> outputs = new HashMap<Integer, Outputz>();
 	int numLogs = 0;
 	int numOutputs = 0;
-	
+	// !ev return runningServers[1]
 	public Server(String jId, String sKey, String placeId) {
 		// System.out.println("New Server Created: " + sKey);
 		this.isDead = false;

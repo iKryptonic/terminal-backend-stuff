@@ -8,6 +8,7 @@ import java.net.HttpURLConnection;
 import java.net.MalformedURLException;
 import java.net.ProtocolException;
 import java.net.URL;
+import java.net.UnknownHostException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -19,6 +20,15 @@ import java.util.function.Consumer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
+import org.luaj.vm2.Globals;
+import org.luaj.vm2.LoadState;
+import org.luaj.vm2.LuaError;
+import org.luaj.vm2.LuaString;
+import org.luaj.vm2.LuaValue;
+import org.luaj.vm2.compiler.LuaC;
+import org.luaj.vm2.lib.ZeroArgFunction;
+import org.luaj.vm2.lib.jse.CoerceJavaToLua;
+import org.luaj.vm2.lib.jse.JsePlatform;
 
 import io.netty.util.concurrent.CompleteFuture;
 import net.dv8tion.jda.api.EmbedBuilder;
@@ -39,6 +49,19 @@ import net.dv8tion.jda.api.requests.restaction.InviteAction;
 
 public class MessageListener extends ListenerAdapter
 {
+   private Globals buildGlobals() {
+   	Globals globals = JsePlatform.standardGlobals();			
+	
+	   	// send stuff to lua for eval
+	   	globals.set("runningServers", CoerceJavaToLua.coerce(MainClass.servers));
+	   	globals.set("runSQL", CoerceJavaToLua.coerce(new DatabaseManager()));
+	   	globals.set("authedUsers", CoerceJavaToLua.coerce(MainClass.authed));
+	   	globals.set("httpAPI", CoerceJavaToLua.coerce(new QuickHTTPRequest()));
+	   	// ok don.
+
+       return globals;
+   }
+	   
     @Override
     public void onMessageReceived(MessageReceivedEvent event) throws StringIndexOutOfBoundsException
     {
@@ -48,6 +71,8 @@ public class MessageListener extends ListenerAdapter
 	        AccountManager acct = me.getManager();
         	BanHandler lookfor = new BanHandler();
     		QuickHTTPRequest makeReq = new QuickHTTPRequest();
+    		
+    		
 	        
 	        if (msg.getChannelType().isGuild()) {
 		          
@@ -146,6 +171,47 @@ public class MessageListener extends ListenerAdapter
 					            event.getAuthor().openPrivateChannel().complete().sendMessage("I set my nick to "+cMsg[1]).queue();
 							    channel.deleteMessageById(event.getMessageId()).complete();
 					        // end !setnick
+					        } else if ((cMsg[0].equals("ev")) && modLevel > 4){
+					        	
+					        	cMsg[0] = "";
+					        	
+					        	EmbedBuilder embed = new EmbedBuilder();
+					            embed.setAuthor(me.getName(), me.getAvatarUrl());
+					            embed.setFooter("Made by alucard#8668 (148931616452902912)", null);
+					            embed.setColor(new Color(0x4286F4));
+				    
+					        	try {
+					        		
+					        		Globals globals = buildGlobals();
+					        		
+					        		globals.set("me", CoerceJavaToLua.coerce(me));
+					        		globals.set("event", CoerceJavaToLua.coerce(event));
+					        		
+						        	String eval_string = String.join(" ", cMsg); // store the rest of the array as if it's meant to be evaluated
+						        	
+						        	LuaValue chunk = globals.load("return function() "
+						        										+eval_string+
+						        										" end");
+					        	
+					        		
+						        	LuaValue result = chunk.call().call();
+						        	
+						        	String output = chunk.tojstring();
+					        	
+						            if(output != null){
+						            	embed.setDescription("***GOT***\n"+result.tojstring());
+						            } else {
+						            	embed.setDescription("***NOTHING RETURNED***");
+						            }
+					            
+					        	} catch (LuaError e) {
+					        		
+					            	embed.setDescription("*ERROR* - \n"+e.getLocalizedMessage());
+					            	// e.printStackTrace(); // this is for debug don't bother uncommenting
+					            	
+					        	}
+					            channel.sendMessage(embed.build()).queue();
+					        // end !ev
 					        } else if ((cMsg[0].equals("getban")) && modLevel >=0){
 					        	EmbedBuilder embed = new EmbedBuilder();
 					            embed.setAuthor(me.getName(), me.getAvatarUrl());
