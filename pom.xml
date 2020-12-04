@@ -10,6 +10,9 @@
         <artifactId>maven-assembly-plugin</artifactId>
         <version>2.5.3</version>
         <configuration>
+          <descriptorRefs>jar-with-dependencies</descriptorRefs>
+	        <finalName>TerminalBackend</finalName>
+	        <appendAssemblyId>false</appendAssemblyId>
           <archive>
             <manifest>
               <mainClass>com.terminalstuff.MainClass</mainClass>
