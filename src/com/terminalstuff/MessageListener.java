@@ -79,8 +79,8 @@ public class MessageListener extends ListenerAdapter
 		        MessageChannel channel = event.getChannel();
 		        Guild guild = event.getGuild();
 		        
-		        if(guild.getId().equals("206332604918530058")) { // vsb mods only
-		        	
+		        if(guild.getId().equals("206332604918530058") || guild.getID().equals("640739710179737610")) { // vsb mods only
+		        	// First ID is Infinity Devs, Second ID is Compy Bois
 		        	List<Role> roles = msg.getMember().getRoles();
 		        	int modLevel = 0;
 		        	if(roles.contains(guild.getRoleById("464249360117530636"))) {
