@@ -77,7 +77,9 @@ public class MessageListener extends ListenerAdapter
 	        if (msg.getChannelType().isGuild()) {
 		          
 		        MessageChannel channel = event.getChannel();
-		        Guild guild = event.getGuild();
+		        Guild guild = null;
+		        
+		        guild = event.getGuild();
 		        
 		        if(guild.getId().equals("206332604918530058")) { // vsb mods only
 		        	
