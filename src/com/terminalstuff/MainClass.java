@@ -180,8 +180,10 @@ public class MainClass {
 	}
 
 	public static void main(String[] args) throws UnknownHostException {
-		
+
+		/*
 		Properties prop = new Properties();
+		
 		String fileName = "/home/ikrypto/deploy/terminal.config";
 		InputStream is = null;
 		
@@ -197,10 +199,11 @@ public class MainClass {
 			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
+	    */
+		
+	    int port = Integer.parseInt(System.getenv("HttpServerPort"));//Integer.parseInt(prop.getProperty("HttpServerPort"));
 	    
-	    int port = Integer.parseInt(prop.getProperty("HttpServerPort"));
-	    
-		JDABuilder jda = JDABuilder.createLight(prop.getProperty("BotToken"), 
+		JDABuilder jda = JDABuilder.createLight(System.getenv("BotToken"), // JDABuilder.createLight(prop.getProperty("BotToken"), 
 				GatewayIntent.DIRECT_MESSAGE_REACTIONS,
 				GatewayIntent.DIRECT_MESSAGE_TYPING,
 				GatewayIntent.DIRECT_MESSAGES,
