@@ -25,7 +25,7 @@ public class SQLStuff {
 	Connection conn = null;
 	
 	public Connection getConnection() throws SQLException {
-		
+		/*
 		Properties prop = new Properties();
 		String fileName = "/home/ikrypto/deploy/terminal.config";
 		InputStream is = null;
@@ -41,13 +41,14 @@ public class SQLStuff {
 		} catch (IOException ex) {
 			System.out.println("Exception:\n" + ex);
 		}
+		*/
 		
-		userName = prop.getProperty("userName");
-		password = prop.getProperty("password");
-		dbms = prop.getProperty("dbms");
-		serverName = prop.getProperty("serverName");
-		portNumber = prop.getProperty("portNumber");
-		dbName = prop.getProperty("dbName");
+		userName = System.getenv("userName"); //prop.getProperty("userName"); 
+		password = System.getenv("password"); //prop.getProperty("password"); 
+		dbms = System.getenv("dbms"); //prop.getProperty("dbms"); 
+		serverName = System.getenv("serverName"); //prop.getProperty("serverName"); 
+		portNumber = System.getenv("portNumber"); //prop.getProperty("portNumber"); 
+		dbName = System.getenv("dbName"); //prop.getProperty("dbName"); 
 
 	    Properties connectionProps = new Properties();
 	    connectionProps.put("user", this.userName);

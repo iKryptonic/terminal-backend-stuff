@@ -2,15 +2,12 @@ package com.terminalstuff;
 
 import java.awt.Color;
 import java.io.BufferedReader;
-import java.io.FileInputStream;
-import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
-import java.util.Properties;
 import java.util.Map.Entry;
 
 import org.json.JSONException;
@@ -30,8 +27,6 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.SelfUser;
 import net.dv8tion.jda.api.entities.TextChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
-
-import com.terminalstuff.AuthSocket;
 
 /* TODO:
  * still needs
@@ -190,13 +185,11 @@ public class MainClass {
 	    try {
 			is = new FileInputStream(fileName);
 		} catch (FileNotFoundException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 	    try {
 			prop.load(is);
 		} catch (IOException e2) {
-			// TODO Auto-generated catch block
 			e2.printStackTrace();
 		}
 	    */
@@ -221,7 +214,7 @@ public class MainClass {
 		final String authorizationKey = "veryCoolAuthKey";
 		
 		final AuthSocket s = new AuthSocket(20015);
-		ReportsWebsocket rs = new ReportsWebsocket(20030);
+		// ReportsWebsocket rs = new ReportsWebsocket(20030);
 
 		try {
             // set up server
