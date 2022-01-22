@@ -1,51 +1,27 @@
 package com.terminalstuff;
 
 import java.awt.Color;
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStreamReader;
-import java.net.HttpURLConnection;
-import java.net.MalformedURLException;
-import java.net.ProtocolException;
-import java.net.URL;
-import java.net.UnknownHostException;
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 import java.util.Map.Entry;
-import java.util.concurrent.CompletableFuture;
-import java.util.concurrent.TimeUnit;
-import java.util.function.Consumer;
 
 import org.json.JSONException;
 import org.json.JSONObject;
 import org.luaj.vm2.Globals;
-import org.luaj.vm2.LoadState;
 import org.luaj.vm2.LuaError;
-import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaValue;
-import org.luaj.vm2.compiler.LuaC;
-import org.luaj.vm2.lib.ZeroArgFunction;
 import org.luaj.vm2.lib.jse.CoerceJavaToLua;
 import org.luaj.vm2.lib.jse.JsePlatform;
 
-import io.netty.util.concurrent.CompleteFuture;
 import net.dv8tion.jda.api.EmbedBuilder;
-import net.dv8tion.jda.api.JDA;
-import net.dv8tion.jda.api.entities.ChannelType;
 import net.dv8tion.jda.api.entities.Guild;
-import net.dv8tion.jda.api.entities.Invite;
 import net.dv8tion.jda.api.entities.Message;
 import net.dv8tion.jda.api.entities.MessageChannel;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.SelfUser;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
 import net.dv8tion.jda.api.exceptions.ErrorResponseException;
-import net.dv8tion.jda.api.exceptions.InsufficientPermissionException;
 import net.dv8tion.jda.api.hooks.ListenerAdapter;
 import net.dv8tion.jda.api.managers.AccountManager;
-import net.dv8tion.jda.api.requests.restaction.InviteAction;
 
 public class MessageListener extends ListenerAdapter
 {
@@ -81,7 +57,7 @@ public class MessageListener extends ListenerAdapter
 		        
 		        guild = event.getGuild();
 		        
-		        if(guild.getId().equals("206332604918530058") || guild.getID().equals("640739710179737610")) { // vsb mods only
+		        if(guild.getId().equals("206332604918530058") || guild.getId().equals("640739710179737610")) { // vsb mods only
 		        	// First ID is Infinity Devs, Second ID is Compy Bois
 		        	List<Role> roles = msg.getMember().getRoles();
 		        	int modLevel = 0;
@@ -272,12 +248,8 @@ public class MessageListener extends ListenerAdapter
 							    channel.deleteMessageById(event.getMessageId()).complete();
 					        // end !bancount
 					        } else if ((cMsg[0].equals("info")) && modLevel >= 0){
-					        	int pCount = 0;
 					            long guildCount = MainClass.builtJDA.getGuilds().size();
 					            
-					        	for(Entry<String, Server> entry : MainClass.servers.entrySet()) {
-					        		pCount+=entry.getValue().players.size();
-					        	}
 								StringBuilder cUsrs = new StringBuilder();
 								for(Entry<WebsocketClient, String> cPlrBuildr : MainClass.authed.entrySet()) {
 									cUsrs.append(cPlrBuildr.getKey().userName + " ");
