@@ -24,7 +24,7 @@ public class SQLStuff {
 	
 	Connection conn = null;
 	
-	public Connection getConnection() throws SQLException {
+	public Connection getConnection() throws SQLException, ClassNotFoundException {
 		/*
 		Properties prop = new Properties();
 		String fileName = "/home/ikrypto/deploy/terminal.config";
@@ -43,6 +43,8 @@ public class SQLStuff {
 		}
 		*/
 		
+		Class.forName("com.mysql.jdbc.Driver");
+	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		userName = System.getenv("userName"); //prop.getProperty("userName"); 
 		password = System.getenv("password"); //prop.getProperty("password"); 
 		dbms = System.getenv("dbms"); //prop.getProperty("dbms"); 

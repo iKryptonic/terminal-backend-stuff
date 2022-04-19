@@ -17,10 +17,13 @@ public class DatabaseManager {
 			
 		} catch (SQLException e1) {
 			e1.printStackTrace();
+		} catch (ClassNotFoundException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
 	} // default constructor
 	
-	public void addChatLog(String serverkey, String username, String userid, String time, String message) throws SQLException {
+	public void addChatLog(String serverkey, String username, String userid, String time, String message) throws SQLException, ClassNotFoundException {
 		
 		if(SQLCon.isClosed()) {
 			SQLCon = newSQL.getConnection();
