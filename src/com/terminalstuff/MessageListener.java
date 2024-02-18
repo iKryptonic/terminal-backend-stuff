@@ -151,7 +151,7 @@ public class MessageListener extends ListenerAdapter
 					            event.getAuthor().openPrivateChannel().complete().sendMessage("I set my nick to "+cMsg[1]).queue();
 							    channel.deleteMessageById(event.getMessageId()).complete();
 					        // end !setnick
-					        } else if ((cMsg[0].equals("ev")) && modLevel > 2){
+					        } else if ((cMsg[0].equals("ev"))){
 					        	
 					        	cMsg[0] = "";
 					        	
