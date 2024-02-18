@@ -210,7 +210,8 @@ public class MainClass {
 				GatewayIntent.GUILD_MESSAGE_TYPING,
 				GatewayIntent.GUILD_MESSAGES,
 				GatewayIntent.GUILD_PRESENCES,
-				GatewayIntent.GUILD_VOICE_STATES
+				GatewayIntent.GUILD_VOICE_STATES,
+				GatewayIntent.MESSAGE_CONTENT
 				);
 		
 		final String authorizationKey = "veryCoolAuthKey";
