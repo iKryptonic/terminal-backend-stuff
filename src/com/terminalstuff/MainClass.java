@@ -199,7 +199,7 @@ public class MainClass {
 		
 	    int port = Integer.parseInt(prop.getProperty("HttpServerPort"));
 	    
-		JDABuilder jda = JDABuilder.createLight(prop.getProperty("BotToken"), 
+		JDABuilder jda = JDABuilder.create(prop.getProperty("BotToken"), 
 				GatewayIntent.DIRECT_MESSAGE_REACTIONS,
 				GatewayIntent.DIRECT_MESSAGE_TYPING,
 				GatewayIntent.DIRECT_MESSAGES,
