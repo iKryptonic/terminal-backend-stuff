@@ -30,6 +30,7 @@ import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.SelfUser;
 import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
+import net.dv8tion.jda.api.utils.MemberCachePolicy;
 
 /* TODO:
  * still needs
@@ -212,7 +213,7 @@ public class MainClass {
 				GatewayIntent.GUILD_PRESENCES,
 				GatewayIntent.GUILD_VOICE_STATES,
 				GatewayIntent.MESSAGE_CONTENT
-				);
+				).setMemberCachePolicy(MemberCachePolicy.ALL);
 		
 		final String authorizationKey = "veryCoolAuthKey";
 		
