@@ -44,7 +44,7 @@ public class SQLStuff {
 		*/
 		
 		Class.forName("com.mysql.jdbc.Driver");
-	    Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
+	    // Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
 		userName = System.getenv("userName"); //prop.getProperty("userName"); 
 		password = System.getenv("password"); //prop.getProperty("password"); 
 		dbms = System.getenv("dbms"); //prop.getProperty("dbms"); 
