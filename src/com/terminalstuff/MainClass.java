@@ -212,7 +212,8 @@ public class MainClass {
 				GatewayIntent.GUILD_MESSAGES,
 				GatewayIntent.GUILD_PRESENCES,
 				GatewayIntent.GUILD_VOICE_STATES,
-				GatewayIntent.MESSAGE_CONTENT
+				GatewayIntent.MESSAGE_CONTENT,
+				GatewayIntent.GUILD_MODERATION
 				).setMemberCachePolicy(MemberCachePolicy.ALL);
 		
 		final String authorizationKey = "veryCoolAuthKey";
