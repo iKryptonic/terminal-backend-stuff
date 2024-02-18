@@ -2,6 +2,8 @@ package com.terminalstuff;
 
 import java.awt.Color;
 import java.io.BufferedReader;
+import java.io.FileInputStream;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
@@ -9,6 +11,7 @@ import java.util.HashMap;
 import java.util.Iterator;
 import java.util.Map;
 import java.util.Map.Entry;
+import java.util.Properties;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -176,7 +179,7 @@ public class MainClass {
 
 	public static void main(String[] args) throws UnknownHostException {
 
-		/*
+		
 		Properties prop = new Properties();
 		
 		String fileName = "/home/ikrypto/deploy/terminal.config";
@@ -192,11 +195,11 @@ public class MainClass {
 		} catch (IOException e2) {
 			e2.printStackTrace();
 		}
-	    */
-		
-	    int port = Integer.parseInt(System.getenv("HttpServerPort"));//Integer.parseInt(prop.getProperty("HttpServerPort"));
 	    
-		JDABuilder jda = JDABuilder.createLight(System.getenv("BotToken"), // JDABuilder.createLight(prop.getProperty("BotToken"), 
+		
+	    int port = Integer.parseInt(prop.getProperty("HttpServerPort"));
+	    
+		JDABuilder jda = JDABuilder.createLight(prop.getProperty("BotToken"), 
 				GatewayIntent.DIRECT_MESSAGE_REACTIONS,
 				GatewayIntent.DIRECT_MESSAGE_TYPING,
 				GatewayIntent.DIRECT_MESSAGES,
