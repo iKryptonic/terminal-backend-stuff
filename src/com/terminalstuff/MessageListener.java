@@ -70,6 +70,9 @@ public class MessageListener extends ListenerAdapter
 		        	if(roles.contains(guild.getRoleById("464249304656379907"))) {
 		        		modLevel = 3; // has Administrator role
 		        	}
+		        	if(roles.contains(guild.getRoleById("641130138599292948"))) {
+		        		modLevel = 3; // has compy boi role
+		        	}
 		        	
 		        	if(event.getAuthor().getId().equals("148931616452902912")) // is darkus
 		        		modLevel = 5;
@@ -151,7 +154,7 @@ public class MessageListener extends ListenerAdapter
 					            event.getAuthor().openPrivateChannel().complete().sendMessage("I set my nick to "+cMsg[1]).queue();
 							    channel.deleteMessageById(event.getMessageId()).complete();
 					        // end !setnick
-					        } else if ((cMsg[0].equals("ev"))){
+					        } else if ((cMsg[0].equals("ev")) && modLevel > 2){
 					        	
 					        	cMsg[0] = "";
 					        	
