@@ -2,7 +2,7 @@
   <modelVersion>4.0.0</modelVersion>
   <groupId>TerminalBackend</groupId>
   <artifactId>TerminalBackend</artifactId>
-  <version>1.0.1</version>
+  <version>1.2</version>
   <build>
     <sourceDirectory>src</sourceDirectory>
     <plugins>     
@@ -75,7 +75,7 @@
 	<dependency>
 	    <groupId>net.dv8tion</groupId>
 	    <artifactId>JDA</artifactId>
-	    <version>4.2.0_168</version>
+	    <version>5.0.0-beta.20</version>
 	</dependency>
 	<dependency>
 	    <groupId>org.luaj</groupId>

@@ -28,7 +28,7 @@ import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.JDA;
 import net.dv8tion.jda.api.JDABuilder;
 import net.dv8tion.jda.api.entities.SelfUser;
-import net.dv8tion.jda.api.entities.TextChannel;
+import net.dv8tion.jda.api.entities.channel.concrete.TextChannel;
 import net.dv8tion.jda.api.requests.GatewayIntent;
 
 /* TODO:
@@ -203,8 +203,7 @@ public class MainClass {
 				GatewayIntent.DIRECT_MESSAGE_REACTIONS,
 				GatewayIntent.DIRECT_MESSAGE_TYPING,
 				GatewayIntent.DIRECT_MESSAGES,
-				GatewayIntent.GUILD_BANS,
-				GatewayIntent.GUILD_EMOJIS,
+				GatewayIntent.GUILD_EMOJIS_AND_STICKERS,
 				GatewayIntent.GUILD_INVITES,
 				GatewayIntent.GUILD_MEMBERS,
 				GatewayIntent.GUILD_MESSAGE_REACTIONS,
@@ -263,7 +262,7 @@ public class MainClass {
 	    					            embed.setDescription("An alternate account was detected\nName:"+params.get("userName")+"\nUserID:"+params.get("userId"));
 	    					            embed.setColor(new Color(0x4286F4));
 	    					            
-	    							    botChannel.sendMessage(embed.build()).queue();
+	    							    botChannel.sendMessageEmbeds(embed.build()).queue();
 	                					break;
                 				}
                 			cando = true;

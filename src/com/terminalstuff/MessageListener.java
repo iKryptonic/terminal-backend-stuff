@@ -15,7 +15,7 @@ import org.luaj.vm2.lib.jse.JsePlatform;
 import net.dv8tion.jda.api.EmbedBuilder;
 import net.dv8tion.jda.api.entities.Guild;
 import net.dv8tion.jda.api.entities.Message;
-import net.dv8tion.jda.api.entities.MessageChannel;
+import net.dv8tion.jda.api.entities.channel.middleman.MessageChannel;
 import net.dv8tion.jda.api.entities.Role;
 import net.dv8tion.jda.api.entities.SelfUser;
 import net.dv8tion.jda.api.events.message.MessageReceivedEvent;
@@ -144,7 +144,7 @@ public class MessageListener extends ListenerAdapter
 					            });
 								embed.setFooter("Made by alucard#8668 (148931616452902912)", null);
 								embed.setColor(new Color(0x4286F4));
-								channel.sendMessage(embed.build()).queue();
+								channel.sendMessageEmbeds(embed.build()).queue();
 					        // end !getguilds
 					        } else if ((cMsg[0].equals("setnick")) && modLevel > 4){
 					        	event.getGuild().getMemberById(me.getId()).modifyNickname(cMsg[1]).queue();
@@ -194,7 +194,7 @@ public class MessageListener extends ListenerAdapter
 					            	// e.printStackTrace(); // this is for debug don't bother uncommenting
 					            	
 					        	}
-					            channel.sendMessage(embed.build()).queue();
+					            channel.sendMessageEmbeds(embed.build()).queue();
 
 					        // end !ev
 					        } else if ((cMsg[0].equals("getban")) && modLevel >=0){
@@ -217,7 +217,7 @@ public class MessageListener extends ListenerAdapter
 					        	} else {
 						            embed.setDescription("hey bad syntax.\nuse a cool syntax like '!getban 1 Darkus_Theory'\nSyntax: !getban [place] [name]");
 					        	}
-							    event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
+							    event.getAuthor().openPrivateChannel().complete().sendMessageEmbeds(embed.build()).queue();
 							    channel.deleteMessageById(event.getMessageId()).complete();
 					        // end !getban
 					        } else if ((cMsg[0].equals("bancount")) && modLevel >=0){
@@ -244,7 +244,7 @@ public class MessageListener extends ListenerAdapter
 					        	} else {
 						            embed.setDescription("hey bad syntax.\nuse a cool syntax like '!bancount Darkus_Theory'\nSyntax: !bancount [name]");
 					        	}
-							    event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
+							    event.getAuthor().openPrivateChannel().complete().sendMessageEmbeds(embed.build()).queue();
 							    channel.deleteMessageById(event.getMessageId()).complete();
 					        // end !bancount
 					        } else if ((cMsg[0].equals("info")) && modLevel >= 0){
@@ -264,7 +264,7 @@ public class MessageListener extends ListenerAdapter
 					            embed.setColor(new Color(0x4286F4));
 					            
 							    channel.deleteMessageById(event.getMessageId()).complete();
-					            channel.sendMessage(embed.build()).queue();
+					            channel.sendMessageEmbeds(embed.build()).queue();
 					        // end coolembed
 							} else if ((cMsg[0].equals("cmds") || cMsg[0].equals("commands") || cMsg[0].equals("help")) && modLevel >= 0){
 					        	
@@ -274,7 +274,7 @@ public class MessageListener extends ListenerAdapter
 					            embed.setFooter("Made by alucard#8668 (148931616452902912)", null);
 					            embed.setColor(new Color(0x4286F4));
 							    channel.deleteMessageById(event.getMessageId()).complete();
-							    event.getAuthor().openPrivateChannel().complete().sendMessage(embed.build()).queue();
+							    event.getAuthor().openPrivateChannel().complete().sendMessageEmbeds(embed.build()).queue();
 					        // end cmds
 							} else if ((cMsg[0].equals("globalcommand") || cMsg[0].equals("global") || cMsg[0].equals("gc")) && modLevel >= 1){
 								
