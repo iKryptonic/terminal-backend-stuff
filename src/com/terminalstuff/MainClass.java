@@ -183,7 +183,7 @@ public class MainClass {
 		
 		Properties prop = new Properties();
 		
-		String fileName = "/home/ikrypto/deploy/terminal.config";
+		String fileName = System.getProperty("user.dir") + "/terminal.config";
 		InputStream is = null;
 		
 	    try {
