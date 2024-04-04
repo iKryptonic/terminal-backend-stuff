@@ -242,6 +242,13 @@ public class MainClass {
                     return 0;
                 }
             });
+            host.addContext("/api/healthcheck", new ContextHandler() {
+                public int serve(Request req, Response resp) throws IOException {
+                    resp.getHeaders().add("Content-Type", "text/plain");
+                    resp.send(200, "Success");
+                    return 0;
+                }
+            });
             host.addContext("/api/sb_tools", new ContextHandler() {
                 public int serve(Request req, Response resp) throws IOException {
                     Map<String, String> params = req.getParams();
