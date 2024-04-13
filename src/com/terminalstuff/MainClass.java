@@ -264,7 +264,7 @@ public class MainClass {
                             	
                 				switch(apiRequest) {
 	                				case "altFound":
-	                					TextChannel botChannel = builtJDA.getGuildById("206332604918530058").getTextChannelById("641395176673378314");
+	                					TextChannel botChannel = builtJDA.getGuildById("640739710179737610").getTextChannelById("1070581506399027210");
 	                					SelfUser me = builtJDA.getSelfUser();
 	                					
 	    					        	EmbedBuilder embed = new EmbedBuilder();
