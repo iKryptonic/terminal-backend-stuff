@@ -228,13 +228,6 @@ public class MainClass {
             
             VirtualHost host = server.getVirtualHost(null); // default host
             host.setAllowGeneratedIndex(true); // with directory index pages
-            host.addContext("/", new ContextHandler() {
-                public int serve(Request req, Response resp) throws IOException {
-                    resp.getHeaders().add("Content-Type", "text/plain");
-                    resp.send(200, "This is the index. I think you were looking for /api/?");
-                    return 0;
-                }
-            });
             host.addContext("/api/", new ContextHandler() {
                 public int serve(Request req, Response resp) throws IOException {
                     resp.getHeaders().add("Content-Type", "text/plain");
