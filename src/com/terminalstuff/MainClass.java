@@ -216,7 +216,7 @@ public class MainClass {
 				GatewayIntent.GUILD_MODERATION
 				).setMemberCachePolicy(MemberCachePolicy.ALL);
 		
-		final String authorizationKey = "veryCoolAuthKey";
+		final String authorizationKey = prop.getProperty("AuthKey");
 		
 		final AuthSocket s = new AuthSocket(20015);
 		// ReportsWebsocket rs = new ReportsWebsocket(20030);
