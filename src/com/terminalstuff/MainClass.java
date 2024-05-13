@@ -199,7 +199,8 @@ public class MainClass {
 	    
 		
 	    int port = Integer.parseInt(prop.getProperty("HttpServerPort"));
-	    
+	    int socketPort = Integer.parseInt(prop.getProperty("WebsocketPort"));
+
 		JDABuilder jda = JDABuilder.create(prop.getProperty("BotToken"), 
 				GatewayIntent.DIRECT_MESSAGE_REACTIONS,
 				GatewayIntent.DIRECT_MESSAGE_TYPING,
@@ -218,7 +219,7 @@ public class MainClass {
 		
 		final String authorizationKey = prop.getProperty("AuthKey");
 		
-		final AuthSocket s = new AuthSocket(20015);
+		final AuthSocket s = new AuthSocket(socketPort);
 		// ReportsWebsocket rs = new ReportsWebsocket(20030);
 
 		try {
